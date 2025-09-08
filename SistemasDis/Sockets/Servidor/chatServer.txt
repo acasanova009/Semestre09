@@ -1,0 +1,20 @@
+
+
+
+
+		Se inicia chat 
+
+
+ otro usuario (11:49) ->hola
+
+ yo (11:49) ->como te llamas?
+
+ otro usuario (11:51) ->Superman
+
+ yo (11:51) ->adios
+
+
+
+
+		Fin chat 
+
