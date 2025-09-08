@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link href="http://telematica1.fi-b.unam.mx/web/assets/bootstrap/dist/css/bootstrap.min.css" media="screen" rel="stylesheet" type="text/css" />
+	<link href="http://telematica1.fi-b.unam.mx/web/assets/fontawesome/css/font-awesome.min.css" media="screen" rel="stylesheet" type="text/css" />
+	<link href="http://telematica1.fi-b.unam.mx/web/css/document.css" media="screen" rel="stylesheet" type="text/css" />
+	<link href="http://telematica1.fi-b.unam.mx/web/assets/ckeditor/plugins/codesnippet/lib/highlight/styles/default.css" media="screen" rel="stylesheet" type="text/css" /><script src="http://telematica1.fi-b.unam.mx/web/assets/ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js"></script><script>hljs.initHighlightingOnLoad();</script>
+	<title></title>
+</head>
+<body>
+<p>char cadena[100];</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; FILE *myf= fopen(&quot;chatCliente.txt&quot;,&quot;a&quot;);</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; time_t t;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; struct tm *tm;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; char hora[100];</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; char *tmp;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; char sendline[100]=&quot;usando el puerto..&quot;;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;while (!strstr(cadena,&quot;adios&quot;)&amp;&amp; !strstr(sendline,&quot;adios&quot;)){</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; bzero(cadena,100);</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; t=time(NULL);</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; tm=localtime(&amp;t);</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; strftime(hora,100,&quot;\n otro usuario (%H:%M) -&gt;&quot;,tm);</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; printf(&quot;%s&quot;,hora);</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;fgets(sendline,100,stdin);</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;tmp=strcat(hora,sendline);</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; fputs(tmp,myf);</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; write(fd,sendline,strlen(sendline)+1);</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;if(!strstr(cadena,&quot;adios&quot;)){</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; strftime(hora,100,&quot;\n otro usuario (%H:%M) -&gt;&quot;, tm);</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; read(fd,cadena,100);</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; tmp=strcat(hora,cadena);</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; printf(&quot;%s&quot;,tmp);</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;fputs(tmp,myf);</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;}</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;} //fin while</p>
+
+<p>&nbsp;</p>
+</body>
+</html>
