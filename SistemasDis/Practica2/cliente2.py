@@ -7,7 +7,7 @@ def convertirCadenaAHora(cadena):
     horaCadena = datetime.datetime.strptime(cadena, formato)
     return horaCadena
 
-IPServidor = "localhost"
+IPServidor = "192.168.1.169"
 puertoServidor = 9899
 
 socketCliente = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -15,6 +15,7 @@ socketCliente = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 inicio = time.time()
 socketCliente.connect((IPServidor, puertoServidor))
 horaCadena = socketCliente.recv(4096).decode()
+time.sleep(2)
 final = time.time()
 socketCliente.close()
 
@@ -26,13 +27,22 @@ horaAjustada = horaServidor + datetime.timedelta(seconds=mitadtiempo)
 
 horaCliente = datetime.datetime.now()
 
-print("RTT total:", tiempo)
-print("Tiempo estimado de ida:", mitadtiempo)
-print("Hora servidor:", horaServidor)
-print("Hora ajustada:", horaAjustada)
-print("Hora cliente:", horaCliente)
+# Función auxiliar para formatear segundos en min, s, ms
+def formatear_tiempo(segundos):
+    minutos = int(segundos // 60)
+    segundos_enteros = int(segundos % 60)
+    milisegundos = int((segundos - int(segundos)) * 1000)
+    return f"{minutos} min {segundos_enteros} s {milisegundos} ms"
 
-# Comparación C vs Cc
+
+# Mostrar horas legibles
+print("Hora servidor:", horaServidor.strftime("%H:%M:%S.%f")[:-3])  # hasta ms
+print("Hora cliente:", horaCliente.strftime("%H:%M:%S.%f")[:-3])
+
+
+print("Hora ajustada:", horaAjustada.strftime("%H:%M:%S.%f")[:-3])
+
+# Comparación
 if horaCliente > horaAjustada:
     print("El cliente está ADELANTADO respecto al servidor.")
 elif horaCliente < horaAjustada:

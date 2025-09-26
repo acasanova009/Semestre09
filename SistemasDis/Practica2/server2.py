@@ -10,7 +10,7 @@ def atender_cliente(socketConexion, addr):
     socketConexion.close()
 
 def main():
-    direcServidor = "0.0.0.0"   # acepta conexiones desde cualquier IP
+    direcServidor = "192.168.1.169"   # acepta conexiones desde cualquier IP
     puertoServidor = 9899
 
     socketServidor = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
